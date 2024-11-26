@@ -14,7 +14,7 @@ RUN npm install -g pm2
 COPY ./photography/ ./
 
 # Build the application (if required)
-RUN npm run build
+
 
 # Expose the application port
 EXPOSE 8080
