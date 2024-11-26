@@ -5,16 +5,20 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Copy only package.json and package-lock.json to leverage Docker caching
-COPY photography/package*.json ./
+COPY ./photography/package*.json ./
 
-# Install dependencies with options to handle cache and integrity issues
-npm run build
+# Install dependencies
+RUN npm install
 
 # Copy the rest of the application files
-COPY photography/ ./
+COPY ./photography/ ./
+
+# Build the application (if required)
+RUN npm run build
 
 # Expose the application port
 EXPOSE 8080
 
 # Start the application
 CMD ["npm", "start"]
+
