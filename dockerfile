@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY photography/package*.json ./
 
 # Install dependencies with options to handle cache and integrity issues
-RUN npm cache clean --force && npm config set registry https://registry.npmjs.org/ && npm install --prefer-offline --legacy-peer-deps
+npm run build
 
 # Copy the rest of the application files
 COPY photography/ ./
