@@ -7,17 +7,14 @@ WORKDIR /usr/src/app
 # Copy only package.json and package-lock.json to leverage Docker caching
 COPY photography/package*.json ./
 
-RUN npm install
+# Install dependencies with options to handle cache and integrity issues
+RUN npm cache clean --force && npm config set registry https://registry.npmjs.org/ && npm install --prefer-offline --legacy-peer-deps
 
-# Install PM2 globally
-RUN npm install -g pm2
-
-# Copy the entire application code to the container
-COPY . .
+# Copy the rest of the application files
+COPY photography/ ./
 
 # Expose the application port
-EXPOSE 8093
+EXPOSE 8080
 
-# Start the application with PM2
-CMD ["pm2-runtime", "server.js"]
-
+# Start the application
+CMD ["npm", "start"]
