@@ -4,15 +4,17 @@ FROM node:18
 WORKDIR /usr/src/app
 
 # Install dependencies for sharp
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libcairo2 \
-    libjpeg-dev \
-    libpango1.0-dev \
-    libgif-dev \
-    librsvg2-dev \
-    libvips-dev \
-    && rm -rf /var/lib/apt/lists/*
+RUN yum update -y && \
+    yum install -y \
+    gcc-c++ \
+    make \
+    cairo-devel \
+    libjpeg-devel \
+    pango-devel \
+    giflib-devel \
+    librsvg2-devel \
+    vips-devel \
+    && yum clean all
 
 # Copy only package.json and package-lock.json to leverage Docker caching
 COPY ./photography/package*.json ./
