@@ -13,12 +13,7 @@ RUN npm install -g pm2
 # Copy the rest of the application files
 COPY ./photography/ ./
 
-# Build the application (if required)
-
-
-# Expose the application port
-EXPOSE 8080
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "start","pm2", "start"]
 
