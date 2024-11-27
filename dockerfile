@@ -1,25 +1,18 @@
-# Use Node.js 18 as the base image
-FROM amazonlinux:2
+FROM node:18
 
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Install dependencies for sharp on Amazon Linux
-RUN yum update -y && \
-    yum install -y \
-    gcc-c++ \
-    make \
-    cairo-devel \
-    libjpeg-devel \
-    pango-devel \
-    giflib-devel \
-    librsvg2-devel \
-    vips-devel \
-    && yum clean all
-
-# Install Node.js 18 (Amazon Linux doesn't include it by default)
-RUN curl -sL https://rpm.nodesource.com/setup_18.x | bash - && \
-    yum install -y nodejs
+# Install dependencies for sharp
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libcairo2 \
+    libjpeg-dev \
+    libpango1.0-dev \
+    libgif-dev \
+    librsvg2-dev \
+    libvips-dev \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy only package.json and package-lock.json to leverage Docker caching
 COPY ./photography/package*.json ./
