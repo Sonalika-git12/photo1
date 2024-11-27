@@ -3,19 +3,6 @@ FROM node:18
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Install dependencies for sharp
-RUN yum update -y && \
-    yum install -y \
-    gcc-c++ \
-    make \
-    cairo-devel \
-    libjpeg-devel \
-    pango-devel \
-    giflib-devel \
-    librsvg2-devel \
-    vips-devel \
-    && yum clean all
-
 # Copy only package.json and package-lock.json to leverage Docker caching
 COPY ./photography/package*.json ./
 
