@@ -13,8 +13,7 @@ RUN npm install -g pm2
 # Copy the rest of the application files
 COPY ./photography/ ./
 
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
 
-# Start the application
-CMD ["npm", "start","pm2", "start"]
 
 
