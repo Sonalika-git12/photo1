@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 COPY ./photography/package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install -g pm2
 
 # Copy the rest of the application files
 COPY ./photography/ ./
