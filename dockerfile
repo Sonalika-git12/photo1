@@ -1,4 +1,4 @@
-FROM nodejs:18
+FROM nodejs
 
 # Set the working directory
 WORKDIR /usr/src/app
